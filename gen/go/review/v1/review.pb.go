@@ -1072,7 +1072,7 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\vReplyReview\x12\x1d.review.v1.ReplyReviewRequest\x1a\x1e.review.v1.ReplyReviewResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/review/reply\x12m\n" +
 	"\fAppealReview\x12\x1e.review.v1.AppealReviewRequest\x1a\x1f.review.v1.AppealReviewResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/review/appeal\x12i\n" +
 	"\vAuditAppeal\x12\x1d.review.v1.AuditAppealRequest\x1a\x1e.review.v1.AuditAppealResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/appeal/audit\x12\x80\x01\n" +
-	"\x12ListReviewByUserID\x12$.review.v1.ListReviewByUserIDRequest\x1a%.review.v1.ListReviewByUserIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/{user_id}/reviewsB!Z\x1freview-service/api/review/v1;v1b\x06proto3"
+	"\x12ListReviewByUserID\x12$.review.v1.ListReviewByUserIDRequest\x1a%.review.v1.ListReviewByUserIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/{user_id}/reviewsBJZHgithub.com/BradleyZhang/ecommerce-review-service/api/gen/go/review/v1;v1b\x06proto3"
 
 var (
 	file_review_v1_review_proto_rawDescOnce sync.Once

@@ -4,7 +4,7 @@ package review.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 
-option go_package = "review-service/api/review/v1;v1";
+option go_package = "github.com/BradleyZhang/ecommerce-review-service/api/gen/go/review/v1;v1";
 service ReviewService {
   // C端创建评价
   rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse) {
