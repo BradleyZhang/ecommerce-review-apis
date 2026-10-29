@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package business.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+
+option go_package = "review-b/api/business/v1;v1";
+
+// 商家端服务
+service BusinessService {
+  // 商家回复用户评价
+  rpc ReplyReview(ReplyReviewRequest) returns (ReplyReviewResponse) {
+    option (google.api.http) = {
+      post: "/business/v1/review/reply"
+      body: "*"
+    };
+  }
+}
+
+message ReplyReviewRequest {
+  int64 review_id = 1 [(buf.validate.field).int64.gt = 0];
+  int64 store_id = 2 [(buf.validate.field).int64.gt = 0];
+  string content = 3 [
+    (buf.validate.field).string.min_len = 2,
+    (buf.validate.field).string.max_len = 200
+  ];
+  string pic_info = 4;
+  string video_info = 5;
+}
+
+// 回复评价的返回值
+message ReplyReviewResponse {
+  int64 reply_id = 1;
+}

@@ -1,10 +1,14 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "review/v1/review.proto",
+    "title": "business/v1/business.proto",
     "version": "version not set"
   },
   "tags": [
+    {
+      "name": "BusinessService",
+      "description": "商家端服务"
+    },
     {
       "name": "ReviewService"
     }
@@ -16,6 +20,39 @@
     "application/json"
   ],
   "paths": {
+    "/business/v1/review/reply": {
+      "post": {
+        "summary": "商家回复用户评价",
+        "operationId": "BusinessService_ReplyReview",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/businessV1ReplyReviewResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/businessV1ReplyReviewRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BusinessService"
+        ]
+      }
+    },
     "/v1/appeal/audit": {
       "post": {
         "summary": "O端评价申诉审核",
@@ -156,7 +193,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ReplyReviewResponse"
+              "$ref": "#/definitions/reviewV1ReplyReviewResponse"
             }
           },
           "default": {
@@ -172,7 +209,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1ReplyReviewRequest"
+              "$ref": "#/definitions/reviewV1ReplyReviewRequest"
             }
           }
         ],
@@ -247,6 +284,38 @@
     }
   },
   "definitions": {
+    "businessV1ReplyReviewRequest": {
+      "type": "object",
+      "properties": {
+        "review_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "store_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "content": {
+          "type": "string"
+        },
+        "pic_info": {
+          "type": "string"
+        },
+        "video_info": {
+          "type": "string"
+        }
+      }
+    },
+    "businessV1ReplyReviewResponse": {
+      "type": "object",
+      "properties": {
+        "reply_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "title": "回复评价的返回值"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -255,6 +324,39 @@
         }
       },
       "additionalProperties": true
+    },
+    "reviewV1ReplyReviewRequest": {
+      "type": "object",
+      "properties": {
+        "review_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "store_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "content": {
+          "type": "string"
+        },
+        "pic_info": {
+          "type": "string"
+        },
+        "video_info": {
+          "type": "string"
+        }
+      },
+      "title": "回复评价的请求"
+    },
+    "reviewV1ReplyReviewResponse": {
+      "type": "object",
+      "properties": {
+        "reply_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "title": "回复评价的返回值"
     },
     "rpcStatus": {
       "type": "object",
@@ -451,39 +553,6 @@
         }
       },
       "title": "用户评价列表的返回值"
-    },
-    "v1ReplyReviewRequest": {
-      "type": "object",
-      "properties": {
-        "review_id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "store_id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "content": {
-          "type": "string"
-        },
-        "pic_info": {
-          "type": "string"
-        },
-        "video_info": {
-          "type": "string"
-        }
-      },
-      "title": "回复评价的请求"
-    },
-    "v1ReplyReviewResponse": {
-      "type": "object",
-      "properties": {
-        "reply_id": {
-          "type": "string",
-          "format": "int64"
-        }
-      },
-      "title": "回复评价的返回值"
     },
     "v1ReviewInfo": {
       "type": "object",
