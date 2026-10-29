@@ -160,7 +160,7 @@ const file_business_v1_business_proto_rawDesc = "" +
 	"\x13ReplyReviewResponse\x12\x19\n" +
 	"\breply_id\x18\x01 \x01(\x03R\areplyId2\x89\x01\n" +
 	"\x0fBusinessService\x12v\n" +
-	"\vReplyReview\x12\x1f.business.v1.ReplyReviewRequest\x1a .business.v1.ReplyReviewResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/business/v1/review/replyB\x1dZ\x1breview-b/api/business/v1;v1b\x06proto3"
+	"\vReplyReview\x12\x1f.business.v1.ReplyReviewRequest\x1a .business.v1.ReplyReviewResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/business/v1/review/replyBFZDgithub.com/BradleyZhang/ecommerce-review-b/api/gen/go/business/v1;v1b\x06proto3"
 
 var (
 	file_business_v1_business_proto_rawDescOnce sync.Once

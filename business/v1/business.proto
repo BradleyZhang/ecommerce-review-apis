@@ -5,7 +5,7 @@ package business.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 
-option go_package = "review-b/api/business/v1;v1";
+option go_package = "github.com/BradleyZhang/ecommerce-review-b/api/gen/go/business/v1;v1";
 
 // 商家端服务
 service BusinessService {
