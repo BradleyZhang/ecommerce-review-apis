@@ -20,7 +20,7 @@
     "application/json"
   ],
   "paths": {
-    "/business/v1/review/reply": {
+    "/b/v1/review/reply": {
       "post": {
         "summary": "商家回复用户评价",
         "operationId": "BusinessService_ReplyReview",
