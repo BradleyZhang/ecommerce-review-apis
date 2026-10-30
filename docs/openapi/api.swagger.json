@@ -454,6 +454,10 @@
           "type": "string",
           "format": "int64"
         },
+        "review_id": {
+          "type": "string",
+          "format": "int64"
+        },
         "status": {
           "type": "integer",
           "format": "int32"

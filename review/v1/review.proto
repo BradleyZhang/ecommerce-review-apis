@@ -175,9 +175,10 @@ message AppealReviewResponse {
 // 对申诉进行审核的请求
 message AuditAppealRequest {
   int64 appeal_id = 1 [(buf.validate.field).int64.gt = 0];
-  int32 status = 2 [(buf.validate.field).int32.gt = 0];
-  string op_user = 3 [(buf.validate.field).string.min_len = 2];
-  optional string op_remarks = 4;
+  int64 review_id = 2 [(buf.validate.field).int64.gt = 0];
+  int32 status = 3 [(buf.validate.field).int32.gt = 0];
+  string op_user = 4 [(buf.validate.field).string.min_len = 2];
+  optional string op_remarks = 5;
 }
 
 // 对申诉进行审核的返回值

@@ -776,9 +776,10 @@ func (x *AppealReviewResponse) GetAppealId() int64 {
 type AuditAppealRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AppealId      int64                  `protobuf:"varint,1,opt,name=appeal_id,json=appealId,proto3" json:"appeal_id,omitempty"`
-	Status        int32                  `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
-	OpUser        string                 `protobuf:"bytes,3,opt,name=op_user,json=opUser,proto3" json:"op_user,omitempty"`
-	OpRemarks     *string                `protobuf:"bytes,4,opt,name=op_remarks,json=opRemarks,proto3,oneof" json:"op_remarks,omitempty"`
+	ReviewId      int64                  `protobuf:"varint,2,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
+	Status        int32                  `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty"`
+	OpUser        string                 `protobuf:"bytes,4,opt,name=op_user,json=opUser,proto3" json:"op_user,omitempty"`
+	OpRemarks     *string                `protobuf:"bytes,5,opt,name=op_remarks,json=opRemarks,proto3,oneof" json:"op_remarks,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -816,6 +817,13 @@ func (*AuditAppealRequest) Descriptor() ([]byte, []int) {
 func (x *AuditAppealRequest) GetAppealId() int64 {
 	if x != nil {
 		return x.AppealId
+	}
+	return 0
+}
+
+func (x *AuditAppealRequest) GetReviewId() int64 {
+	if x != nil {
+		return x.ReviewId
 	}
 	return 0
 }
@@ -1050,13 +1058,14 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\n" +
 	"video_info\x18\x06 \x01(\tR\tvideoInfo\"3\n" +
 	"\x14AppealReviewResponse\x12\x1b\n" +
-	"\tappeal_id\x18\x01 \x01(\x03R\bappealId\"\xb0\x01\n" +
+	"\tappeal_id\x18\x01 \x01(\x03R\bappealId\"\xd6\x01\n" +
 	"\x12AuditAppealRequest\x12$\n" +
-	"\tappeal_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\bappealId\x12\x1f\n" +
-	"\x06status\x18\x02 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x06status\x12 \n" +
-	"\aop_user\x18\x03 \x01(\tB\a\xbaH\x04r\x02\x10\x02R\x06opUser\x12\"\n" +
+	"\tappeal_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\bappealId\x12$\n" +
+	"\treview_id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\breviewId\x12\x1f\n" +
+	"\x06status\x18\x03 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x06status\x12 \n" +
+	"\aop_user\x18\x04 \x01(\tB\a\xbaH\x04r\x02\x10\x02R\x06opUser\x12\"\n" +
 	"\n" +
-	"op_remarks\x18\x04 \x01(\tH\x00R\topRemarks\x88\x01\x01B\r\n" +
+	"op_remarks\x18\x05 \x01(\tH\x00R\topRemarks\x88\x01\x01B\r\n" +
 	"\v_op_remarks\"2\n" +
 	"\x13AuditAppealResponse\x12\x1b\n" +
 	"\tappeal_id\x18\x01 \x01(\x03R\bappealId\"=\n" +
