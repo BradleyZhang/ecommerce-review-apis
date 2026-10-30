@@ -473,12 +473,6 @@
     },
     "reviewV1AuditAppealResponse": {
       "type": "object",
-      "properties": {
-        "appeal_id": {
-          "type": "string",
-          "format": "int64"
-        }
-      },
       "title": "对申诉进行审核的返回值"
     },
     "reviewV1AuditReviewRequest": {

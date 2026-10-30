@@ -852,7 +852,6 @@ func (x *AuditAppealRequest) GetOpRemarks() string {
 // 对申诉进行审核的返回值
 type AuditAppealResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AppealId      int64                  `protobuf:"varint,1,opt,name=appeal_id,json=appealId,proto3" json:"appeal_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -885,13 +884,6 @@ func (x *AuditAppealResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AuditAppealResponse.ProtoReflect.Descriptor instead.
 func (*AuditAppealResponse) Descriptor() ([]byte, []int) {
 	return file_review_v1_review_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *AuditAppealResponse) GetAppealId() int64 {
-	if x != nil {
-		return x.AppealId
-	}
-	return 0
 }
 
 // 用户评价列表的请求
@@ -988,7 +980,7 @@ var File_review_v1_review_proto protoreflect.FileDescriptor
 
 const file_review_v1_review_proto_rawDesc = "" +
 	"\n" +
-	"\x16review/v1/review.proto\x12\treview.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\"\x87\x03\n" +
+	"\x16review/v1/review.proto\x12\treview.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\"\x90\x03\n" +
 	"\x13CreateReviewRequest\x12 \n" +
 	"\auser_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x06userId\x12\"\n" +
 	"\border_id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\x12%\n" +
@@ -1002,8 +994,8 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\xbaH\ar\x05\x10\b\x18\xff\x01R\acontent\x12\x19\n" +
 	"\bpic_info\x18\a \x01(\tR\apicInfo\x12\x1d\n" +
 	"\n" +
-	"video_info\x18\b \x01(\tR\tvideoInfo\x12\x19\n" +
-	"\bstore_id\x18\t \x01(\x03R\astoreId\x12\x1c\n" +
+	"video_info\x18\b \x01(\tR\tvideoInfo\x12\"\n" +
+	"\bstore_id\x18\t \x01(\x03B\a\xbaH\x04\"\x02 \x00R\astoreId\x12\x1c\n" +
 	"\tanonymous\x18\n" +
 	" \x01(\bR\tanonymous\"3\n" +
 	"\x14CreateReviewResponse\x12\x1b\n" +
@@ -1066,9 +1058,8 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\aop_user\x18\x04 \x01(\tB\a\xbaH\x04r\x02\x10\x02R\x06opUser\x12\"\n" +
 	"\n" +
 	"op_remarks\x18\x05 \x01(\tH\x00R\topRemarks\x88\x01\x01B\r\n" +
-	"\v_op_remarks\"2\n" +
-	"\x13AuditAppealResponse\x12\x1b\n" +
-	"\tappeal_id\x18\x01 \x01(\x03R\bappealId\"=\n" +
+	"\v_op_remarks\"\x15\n" +
+	"\x13AuditAppealResponse\"=\n" +
 	"\x19ListReviewByUserIDRequest\x12 \n" +
 	"\auser_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x06userId\"G\n" +
 	"\x1aListReviewByUserIDResponse\x12)\n" +

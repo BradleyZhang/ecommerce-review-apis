@@ -87,7 +87,7 @@ message CreateReviewRequest {
   ];
   string pic_info = 7;
   string video_info = 8;
-  int64 store_id = 9;
+  int64 store_id = 9 [(buf.validate.field).int64.gt = 0];
   bool anonymous = 10; // 评价匿名
 }
 
@@ -182,9 +182,7 @@ message AuditAppealRequest {
 }
 
 // 对申诉进行审核的返回值
-message AuditAppealResponse {
-  int64 appeal_id = 1;
-}
+message AuditAppealResponse {}
 
 // 用户评价列表的请求
 message ListReviewByUserIDRequest {
