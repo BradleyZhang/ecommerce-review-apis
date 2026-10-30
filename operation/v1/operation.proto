@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package operation.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+
+option go_package = "github.com/BradleyZhang/ecommerce-review-o/api/gen/go/operation/v1;v1";
+
+service OperationService {
+  rpc AuditReview(AuditReviewRequest) returns (AuditReviewResponse) {
+    option (google.api.http) = {
+      post: "/o/v1/review/audit"
+      body: "*"
+    };
+  }
+  rpc AuditAppeal(AuditAppealRequest) returns (AuditAppealResponse) {
+    option (google.api.http) = {
+      post: "/o/v1/appeal/audit"
+      body: "*"
+    };
+  }
+}
+
+message AuditReviewRequest {
+  int64 review_id = 1 [(buf.validate.field).int64.gt = 0];
+  int32 status = 2 [(buf.validate.field).int32.gt = 0];
+  string op_user = 3 [(buf.validate.field).string.min_len = 2];
+  string op_reason = 4 [(buf.validate.field).string.min_len = 2];
+  optional string op_remarks = 5;
+}
+message AuditReviewResponse {}
+message AuditAppealRequest {
+  int64 appeal_id = 1 [(buf.validate.field).int64.gt = 0];
+  int64 review_id = 2 [(buf.validate.field).int64.gt = 0];
+  int32 status = 3 [(buf.validate.field).int32 = {gt: 0}];
+  string op_user = 4 [(buf.validate.field).string.min_len = 2];
+  string op_reason = 5 [(buf.validate.field).string.min_len = 2];
+  optional string op_remarks = 6;
+}
+// 对申诉进行审核的返回值
+message AuditAppealResponse {}

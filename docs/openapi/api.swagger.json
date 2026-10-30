@@ -10,6 +10,9 @@
       "description": "商家端服务"
     },
     {
+      "name": "OperationService"
+    },
+    {
       "name": "ReviewService"
     }
   ],
@@ -53,15 +56,14 @@
         ]
       }
     },
-    "/v1/appeal/audit": {
+    "/o/v1/appeal/audit": {
       "post": {
-        "summary": "O端评价申诉审核",
-        "operationId": "ReviewService_AuditAppeal",
+        "operationId": "OperationService_AuditAppeal",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1AuditAppealResponse"
+              "$ref": "#/definitions/operationV1AuditAppealResponse"
             }
           },
           "default": {
@@ -77,7 +79,72 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1AuditAppealRequest"
+              "$ref": "#/definitions/operationV1AuditAppealRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OperationService"
+        ]
+      }
+    },
+    "/o/v1/review/audit": {
+      "post": {
+        "operationId": "OperationService_AuditReview",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/operationV1AuditReviewResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/operationV1AuditReviewRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OperationService"
+        ]
+      }
+    },
+    "/v1/appeal/audit": {
+      "post": {
+        "summary": "O端评价申诉审核",
+        "operationId": "ReviewService_AuditAppeal",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/reviewV1AuditAppealResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/reviewV1AuditAppealRequest"
             }
           }
         ],
@@ -160,7 +227,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1AuditReviewResponse"
+              "$ref": "#/definitions/reviewV1AuditReviewResponse"
             }
           },
           "default": {
@@ -176,7 +243,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1AuditReviewRequest"
+              "$ref": "#/definitions/reviewV1AuditReviewRequest"
             }
           }
         ],
@@ -316,6 +383,61 @@
       },
       "title": "回复评价的返回值"
     },
+    "operationV1AuditAppealRequest": {
+      "type": "object",
+      "properties": {
+        "appeal_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "review_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "op_user": {
+          "type": "string"
+        },
+        "op_reason": {
+          "type": "string"
+        },
+        "op_remarks": {
+          "type": "string"
+        }
+      }
+    },
+    "operationV1AuditAppealResponse": {
+      "type": "object",
+      "title": "对申诉进行审核的返回值"
+    },
+    "operationV1AuditReviewRequest": {
+      "type": "object",
+      "properties": {
+        "review_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "op_user": {
+          "type": "string"
+        },
+        "op_reason": {
+          "type": "string"
+        },
+        "op_remarks": {
+          "type": "string"
+        }
+      }
+    },
+    "operationV1AuditReviewResponse": {
+      "type": "object"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -324,6 +446,73 @@
         }
       },
       "additionalProperties": true
+    },
+    "reviewV1AuditAppealRequest": {
+      "type": "object",
+      "properties": {
+        "appeal_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "op_user": {
+          "type": "string"
+        },
+        "op_remarks": {
+          "type": "string"
+        }
+      },
+      "title": "对申诉进行审核的请求"
+    },
+    "reviewV1AuditAppealResponse": {
+      "type": "object",
+      "properties": {
+        "appeal_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "title": "对申诉进行审核的返回值"
+    },
+    "reviewV1AuditReviewRequest": {
+      "type": "object",
+      "properties": {
+        "review_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "op_user": {
+          "type": "string"
+        },
+        "op_reason": {
+          "type": "string"
+        },
+        "op_remarks": {
+          "type": "string"
+        }
+      },
+      "title": "审核评价的请求"
+    },
+    "reviewV1AuditReviewResponse": {
+      "type": "object",
+      "properties": {
+        "review_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "审核评价的返回值"
     },
     "reviewV1ReplyReviewRequest": {
       "type": "object",
@@ -412,73 +601,6 @@
         }
       },
       "title": "对评价进行申诉的返回值"
-    },
-    "v1AuditAppealRequest": {
-      "type": "object",
-      "properties": {
-        "appeal_id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "status": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "op_user": {
-          "type": "string"
-        },
-        "op_remarks": {
-          "type": "string"
-        }
-      },
-      "title": "对申诉进行审核的请求"
-    },
-    "v1AuditAppealResponse": {
-      "type": "object",
-      "properties": {
-        "appeal_id": {
-          "type": "string",
-          "format": "int64"
-        }
-      },
-      "title": "对申诉进行审核的返回值"
-    },
-    "v1AuditReviewRequest": {
-      "type": "object",
-      "properties": {
-        "review_id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "status": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "op_user": {
-          "type": "string"
-        },
-        "op_reason": {
-          "type": "string"
-        },
-        "op_remarks": {
-          "type": "string"
-        }
-      },
-      "title": "审核评价的请求"
-    },
-    "v1AuditReviewResponse": {
-      "type": "object",
-      "properties": {
-        "review_id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "status": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "审核评价的返回值"
     },
     "v1CreateReviewRequest": {
       "type": "object",
