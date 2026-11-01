@@ -890,6 +890,8 @@ func (*AuditAppealResponse) Descriptor() ([]byte, []int) {
 type ListReviewByUserIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Offset        int64                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit         int64                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -927,6 +929,20 @@ func (*ListReviewByUserIDRequest) Descriptor() ([]byte, []int) {
 func (x *ListReviewByUserIDRequest) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
+	}
+	return 0
+}
+
+func (x *ListReviewByUserIDRequest) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ListReviewByUserIDRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
 	}
 	return 0
 }
@@ -979,8 +995,8 @@ func (x *ListReviewByUserIDResponse) GetList() []*ReviewInfo {
 type ListReviewByStoreIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	StoreId       int64                  `protobuf:"varint,1,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
-	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"` // default 30
+	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"` // default 0
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`   // default 30 , max 50
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1163,15 +1179,17 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\n" +
 	"op_remarks\x18\x05 \x01(\tH\x00R\topRemarks\x88\x01\x01B\r\n" +
 	"\v_op_remarks\"\x15\n" +
-	"\x13AuditAppealResponse\"=\n" +
+	"\x13AuditAppealResponse\"k\n" +
 	"\x19ListReviewByUserIDRequest\x12 \n" +
-	"\auser_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x06userId\"G\n" +
+	"\auser_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x06userId\x12\x16\n" +
+	"\x06offset\x18\x02 \x01(\x03R\x06offset\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x03R\x05limit\"G\n" +
 	"\x1aListReviewByUserIDResponse\x12)\n" +
-	"\x04list\x18\x01 \x03(\v2\x15.review.v1.ReviewInfoR\x04list\"w\n" +
+	"\x04list\x18\x01 \x03(\v2\x15.review.v1.ReviewInfoR\x04list\"n\n" +
 	"\x1aListReviewByStoreIDRequest\x12\"\n" +
 	"\bstore_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\astoreId\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\x12\x1d\n" +
-	"\x05limit\x18\x03 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x05limit\"H\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\"H\n" +
 	"\x1bListReviewByStoreIDResponse\x12)\n" +
 	"\x04list\x18\x01 \x03(\v2\x15.review.v1.ReviewInfoR\x04list2\xf8\x06\n" +
 	"\rReviewService\x12f\n" +

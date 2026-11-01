@@ -189,6 +189,8 @@ message AuditAppealResponse {}
 // 用户评价列表的请求
 message ListReviewByUserIDRequest {
   int64 user_id = 1 [(buf.validate.field).int64.gt = 0];
+  int64 offset = 2;
+  int64 limit = 3;
 }
 
 // 用户评价列表的返回值
@@ -197,8 +199,8 @@ message ListReviewByUserIDResponse {
 }
 message ListReviewByStoreIDRequest {
   int64 store_id = 1 [(buf.validate.field).int64.gt = 0];
-  int32 offset = 2;
-  int32 limit = 3 [(buf.validate.field).int32.gt = 0]; // default 30
+  int32 offset = 2; // default 0
+  int32 limit = 3; // default 30 , max 50
 }
 message ListReviewByStoreIDResponse {
   repeated ReviewInfo list = 1;
