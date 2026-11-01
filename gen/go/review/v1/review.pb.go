@@ -976,6 +976,110 @@ func (x *ListReviewByUserIDResponse) GetList() []*ReviewInfo {
 	return nil
 }
 
+type ListReviewByStoreIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StoreId       int64                  `protobuf:"varint,1,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
+	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"` // default 30
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListReviewByStoreIDRequest) Reset() {
+	*x = ListReviewByStoreIDRequest{}
+	mi := &file_review_v1_review_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListReviewByStoreIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListReviewByStoreIDRequest) ProtoMessage() {}
+
+func (x *ListReviewByStoreIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_review_v1_review_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListReviewByStoreIDRequest.ProtoReflect.Descriptor instead.
+func (*ListReviewByStoreIDRequest) Descriptor() ([]byte, []int) {
+	return file_review_v1_review_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *ListReviewByStoreIDRequest) GetStoreId() int64 {
+	if x != nil {
+		return x.StoreId
+	}
+	return 0
+}
+
+func (x *ListReviewByStoreIDRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ListReviewByStoreIDRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type ListReviewByStoreIDResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	List          []*ReviewInfo          `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListReviewByStoreIDResponse) Reset() {
+	*x = ListReviewByStoreIDResponse{}
+	mi := &file_review_v1_review_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListReviewByStoreIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListReviewByStoreIDResponse) ProtoMessage() {}
+
+func (x *ListReviewByStoreIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_review_v1_review_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListReviewByStoreIDResponse.ProtoReflect.Descriptor instead.
+func (*ListReviewByStoreIDResponse) Descriptor() ([]byte, []int) {
+	return file_review_v1_review_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *ListReviewByStoreIDResponse) GetList() []*ReviewInfo {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
 var File_review_v1_review_proto protoreflect.FileDescriptor
 
 const file_review_v1_review_proto_rawDesc = "" +
@@ -1063,7 +1167,13 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\x19ListReviewByUserIDRequest\x12 \n" +
 	"\auser_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x06userId\"G\n" +
 	"\x1aListReviewByUserIDResponse\x12)\n" +
-	"\x04list\x18\x01 \x03(\v2\x15.review.v1.ReviewInfoR\x04list2\x92\x06\n" +
+	"\x04list\x18\x01 \x03(\v2\x15.review.v1.ReviewInfoR\x04list\"w\n" +
+	"\x1aListReviewByStoreIDRequest\x12\"\n" +
+	"\bstore_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\astoreId\x12\x16\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\x12\x1d\n" +
+	"\x05limit\x18\x03 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x05limit\"H\n" +
+	"\x1bListReviewByStoreIDResponse\x12)\n" +
+	"\x04list\x18\x01 \x03(\v2\x15.review.v1.ReviewInfoR\x04list2\xf8\x06\n" +
 	"\rReviewService\x12f\n" +
 	"\fCreateReview\x12\x1e.review.v1.CreateReviewRequest\x1a\x1f.review.v1.CreateReviewResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
 	"/v1/review\x12f\n" +
@@ -1072,7 +1182,8 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\vReplyReview\x12\x1d.review.v1.ReplyReviewRequest\x1a\x1e.review.v1.ReplyReviewResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/review/reply\x12m\n" +
 	"\fAppealReview\x12\x1e.review.v1.AppealReviewRequest\x1a\x1f.review.v1.AppealReviewResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/review/appeal\x12i\n" +
 	"\vAuditAppeal\x12\x1d.review.v1.AuditAppealRequest\x1a\x1e.review.v1.AuditAppealResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/appeal/audit\x12\x80\x01\n" +
-	"\x12ListReviewByUserID\x12$.review.v1.ListReviewByUserIDRequest\x1a%.review.v1.ListReviewByUserIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/{user_id}/reviewsBJZHgithub.com/BradleyZhang/ecommerce-review-service/api/gen/go/review/v1;v1b\x06proto3"
+	"\x12ListReviewByUserID\x12$.review.v1.ListReviewByUserIDRequest\x1a%.review.v1.ListReviewByUserIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/{user_id}/reviews\x12d\n" +
+	"\x13ListReviewByStoreID\x12%.review.v1.ListReviewByStoreIDRequest\x1a&.review.v1.ListReviewByStoreIDResponseBJZHgithub.com/BradleyZhang/ecommerce-review-service/api/gen/go/review/v1;v1b\x06proto3"
 
 var (
 	file_review_v1_review_proto_rawDescOnce sync.Once
@@ -1086,46 +1197,51 @@ func file_review_v1_review_proto_rawDescGZIP() []byte {
 	return file_review_v1_review_proto_rawDescData
 }
 
-var file_review_v1_review_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_review_v1_review_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_review_v1_review_proto_goTypes = []any{
-	(*CreateReviewRequest)(nil),        // 0: review.v1.CreateReviewRequest
-	(*CreateReviewResponse)(nil),       // 1: review.v1.CreateReviewResponse
-	(*GetReviewRequest)(nil),           // 2: review.v1.GetReviewRequest
-	(*GetReviewResponse)(nil),          // 3: review.v1.GetReviewResponse
-	(*ReviewInfo)(nil),                 // 4: review.v1.ReviewInfo
-	(*AuditReviewRequest)(nil),         // 5: review.v1.AuditReviewRequest
-	(*AuditReviewResponse)(nil),        // 6: review.v1.AuditReviewResponse
-	(*ReplyReviewRequest)(nil),         // 7: review.v1.ReplyReviewRequest
-	(*ReplyReviewResponse)(nil),        // 8: review.v1.ReplyReviewResponse
-	(*AppealReviewRequest)(nil),        // 9: review.v1.AppealReviewRequest
-	(*AppealReviewResponse)(nil),       // 10: review.v1.AppealReviewResponse
-	(*AuditAppealRequest)(nil),         // 11: review.v1.AuditAppealRequest
-	(*AuditAppealResponse)(nil),        // 12: review.v1.AuditAppealResponse
-	(*ListReviewByUserIDRequest)(nil),  // 13: review.v1.ListReviewByUserIDRequest
-	(*ListReviewByUserIDResponse)(nil), // 14: review.v1.ListReviewByUserIDResponse
+	(*CreateReviewRequest)(nil),         // 0: review.v1.CreateReviewRequest
+	(*CreateReviewResponse)(nil),        // 1: review.v1.CreateReviewResponse
+	(*GetReviewRequest)(nil),            // 2: review.v1.GetReviewRequest
+	(*GetReviewResponse)(nil),           // 3: review.v1.GetReviewResponse
+	(*ReviewInfo)(nil),                  // 4: review.v1.ReviewInfo
+	(*AuditReviewRequest)(nil),          // 5: review.v1.AuditReviewRequest
+	(*AuditReviewResponse)(nil),         // 6: review.v1.AuditReviewResponse
+	(*ReplyReviewRequest)(nil),          // 7: review.v1.ReplyReviewRequest
+	(*ReplyReviewResponse)(nil),         // 8: review.v1.ReplyReviewResponse
+	(*AppealReviewRequest)(nil),         // 9: review.v1.AppealReviewRequest
+	(*AppealReviewResponse)(nil),        // 10: review.v1.AppealReviewResponse
+	(*AuditAppealRequest)(nil),          // 11: review.v1.AuditAppealRequest
+	(*AuditAppealResponse)(nil),         // 12: review.v1.AuditAppealResponse
+	(*ListReviewByUserIDRequest)(nil),   // 13: review.v1.ListReviewByUserIDRequest
+	(*ListReviewByUserIDResponse)(nil),  // 14: review.v1.ListReviewByUserIDResponse
+	(*ListReviewByStoreIDRequest)(nil),  // 15: review.v1.ListReviewByStoreIDRequest
+	(*ListReviewByStoreIDResponse)(nil), // 16: review.v1.ListReviewByStoreIDResponse
 }
 var file_review_v1_review_proto_depIdxs = []int32{
 	4,  // 0: review.v1.GetReviewResponse.data:type_name -> review.v1.ReviewInfo
 	4,  // 1: review.v1.ListReviewByUserIDResponse.list:type_name -> review.v1.ReviewInfo
-	0,  // 2: review.v1.ReviewService.CreateReview:input_type -> review.v1.CreateReviewRequest
-	2,  // 3: review.v1.ReviewService.GetReview:input_type -> review.v1.GetReviewRequest
-	5,  // 4: review.v1.ReviewService.AuditReview:input_type -> review.v1.AuditReviewRequest
-	7,  // 5: review.v1.ReviewService.ReplyReview:input_type -> review.v1.ReplyReviewRequest
-	9,  // 6: review.v1.ReviewService.AppealReview:input_type -> review.v1.AppealReviewRequest
-	11, // 7: review.v1.ReviewService.AuditAppeal:input_type -> review.v1.AuditAppealRequest
-	13, // 8: review.v1.ReviewService.ListReviewByUserID:input_type -> review.v1.ListReviewByUserIDRequest
-	1,  // 9: review.v1.ReviewService.CreateReview:output_type -> review.v1.CreateReviewResponse
-	3,  // 10: review.v1.ReviewService.GetReview:output_type -> review.v1.GetReviewResponse
-	6,  // 11: review.v1.ReviewService.AuditReview:output_type -> review.v1.AuditReviewResponse
-	8,  // 12: review.v1.ReviewService.ReplyReview:output_type -> review.v1.ReplyReviewResponse
-	10, // 13: review.v1.ReviewService.AppealReview:output_type -> review.v1.AppealReviewResponse
-	12, // 14: review.v1.ReviewService.AuditAppeal:output_type -> review.v1.AuditAppealResponse
-	14, // 15: review.v1.ReviewService.ListReviewByUserID:output_type -> review.v1.ListReviewByUserIDResponse
-	9,  // [9:16] is the sub-list for method output_type
-	2,  // [2:9] is the sub-list for method input_type
-	2,  // [2:2] is the sub-list for extension type_name
-	2,  // [2:2] is the sub-list for extension extendee
-	0,  // [0:2] is the sub-list for field type_name
+	4,  // 2: review.v1.ListReviewByStoreIDResponse.list:type_name -> review.v1.ReviewInfo
+	0,  // 3: review.v1.ReviewService.CreateReview:input_type -> review.v1.CreateReviewRequest
+	2,  // 4: review.v1.ReviewService.GetReview:input_type -> review.v1.GetReviewRequest
+	5,  // 5: review.v1.ReviewService.AuditReview:input_type -> review.v1.AuditReviewRequest
+	7,  // 6: review.v1.ReviewService.ReplyReview:input_type -> review.v1.ReplyReviewRequest
+	9,  // 7: review.v1.ReviewService.AppealReview:input_type -> review.v1.AppealReviewRequest
+	11, // 8: review.v1.ReviewService.AuditAppeal:input_type -> review.v1.AuditAppealRequest
+	13, // 9: review.v1.ReviewService.ListReviewByUserID:input_type -> review.v1.ListReviewByUserIDRequest
+	15, // 10: review.v1.ReviewService.ListReviewByStoreID:input_type -> review.v1.ListReviewByStoreIDRequest
+	1,  // 11: review.v1.ReviewService.CreateReview:output_type -> review.v1.CreateReviewResponse
+	3,  // 12: review.v1.ReviewService.GetReview:output_type -> review.v1.GetReviewResponse
+	6,  // 13: review.v1.ReviewService.AuditReview:output_type -> review.v1.AuditReviewResponse
+	8,  // 14: review.v1.ReviewService.ReplyReview:output_type -> review.v1.ReplyReviewResponse
+	10, // 15: review.v1.ReviewService.AppealReview:output_type -> review.v1.AppealReviewResponse
+	12, // 16: review.v1.ReviewService.AuditAppeal:output_type -> review.v1.AuditAppealResponse
+	14, // 17: review.v1.ReviewService.ListReviewByUserID:output_type -> review.v1.ListReviewByUserIDResponse
+	16, // 18: review.v1.ReviewService.ListReviewByStoreID:output_type -> review.v1.ListReviewByStoreIDResponse
+	11, // [11:19] is the sub-list for method output_type
+	3,  // [3:11] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_review_v1_review_proto_init() }
@@ -1141,7 +1257,7 @@ func file_review_v1_review_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_review_v1_review_proto_rawDesc), len(file_review_v1_review_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

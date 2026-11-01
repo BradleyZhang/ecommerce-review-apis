@@ -19,13 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ReviewService_CreateReview_FullMethodName       = "/review.v1.ReviewService/CreateReview"
-	ReviewService_GetReview_FullMethodName          = "/review.v1.ReviewService/GetReview"
-	ReviewService_AuditReview_FullMethodName        = "/review.v1.ReviewService/AuditReview"
-	ReviewService_ReplyReview_FullMethodName        = "/review.v1.ReviewService/ReplyReview"
-	ReviewService_AppealReview_FullMethodName       = "/review.v1.ReviewService/AppealReview"
-	ReviewService_AuditAppeal_FullMethodName        = "/review.v1.ReviewService/AuditAppeal"
-	ReviewService_ListReviewByUserID_FullMethodName = "/review.v1.ReviewService/ListReviewByUserID"
+	ReviewService_CreateReview_FullMethodName        = "/review.v1.ReviewService/CreateReview"
+	ReviewService_GetReview_FullMethodName           = "/review.v1.ReviewService/GetReview"
+	ReviewService_AuditReview_FullMethodName         = "/review.v1.ReviewService/AuditReview"
+	ReviewService_ReplyReview_FullMethodName         = "/review.v1.ReviewService/ReplyReview"
+	ReviewService_AppealReview_FullMethodName        = "/review.v1.ReviewService/AppealReview"
+	ReviewService_AuditAppeal_FullMethodName         = "/review.v1.ReviewService/AuditAppeal"
+	ReviewService_ListReviewByUserID_FullMethodName  = "/review.v1.ReviewService/ListReviewByUserID"
+	ReviewService_ListReviewByStoreID_FullMethodName = "/review.v1.ReviewService/ListReviewByStoreID"
 )
 
 // ReviewServiceClient is the client API for ReviewService service.
@@ -46,6 +47,7 @@ type ReviewServiceClient interface {
 	AuditAppeal(ctx context.Context, in *AuditAppealRequest, opts ...grpc.CallOption) (*AuditAppealResponse, error)
 	// C端查看userID下所有评价
 	ListReviewByUserID(ctx context.Context, in *ListReviewByUserIDRequest, opts ...grpc.CallOption) (*ListReviewByUserIDResponse, error)
+	ListReviewByStoreID(ctx context.Context, in *ListReviewByStoreIDRequest, opts ...grpc.CallOption) (*ListReviewByStoreIDResponse, error)
 }
 
 type reviewServiceClient struct {
@@ -126,6 +128,16 @@ func (c *reviewServiceClient) ListReviewByUserID(ctx context.Context, in *ListRe
 	return out, nil
 }
 
+func (c *reviewServiceClient) ListReviewByStoreID(ctx context.Context, in *ListReviewByStoreIDRequest, opts ...grpc.CallOption) (*ListReviewByStoreIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListReviewByStoreIDResponse)
+	err := c.cc.Invoke(ctx, ReviewService_ListReviewByStoreID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ReviewServiceServer is the server API for ReviewService service.
 // All implementations must embed UnimplementedReviewServiceServer
 // for forward compatibility.
@@ -144,6 +156,7 @@ type ReviewServiceServer interface {
 	AuditAppeal(context.Context, *AuditAppealRequest) (*AuditAppealResponse, error)
 	// C端查看userID下所有评价
 	ListReviewByUserID(context.Context, *ListReviewByUserIDRequest) (*ListReviewByUserIDResponse, error)
+	ListReviewByStoreID(context.Context, *ListReviewByStoreIDRequest) (*ListReviewByStoreIDResponse, error)
 	mustEmbedUnimplementedReviewServiceServer()
 }
 
@@ -174,6 +187,9 @@ func (UnimplementedReviewServiceServer) AuditAppeal(context.Context, *AuditAppea
 }
 func (UnimplementedReviewServiceServer) ListReviewByUserID(context.Context, *ListReviewByUserIDRequest) (*ListReviewByUserIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListReviewByUserID not implemented")
+}
+func (UnimplementedReviewServiceServer) ListReviewByStoreID(context.Context, *ListReviewByStoreIDRequest) (*ListReviewByStoreIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListReviewByStoreID not implemented")
 }
 func (UnimplementedReviewServiceServer) mustEmbedUnimplementedReviewServiceServer() {}
 func (UnimplementedReviewServiceServer) testEmbeddedByValue()                       {}
@@ -322,6 +338,24 @@ func _ReviewService_ListReviewByUserID_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ReviewService_ListReviewByStoreID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListReviewByStoreIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReviewServiceServer).ListReviewByStoreID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ReviewService_ListReviewByStoreID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReviewServiceServer).ListReviewByStoreID(ctx, req.(*ListReviewByStoreIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ReviewService_ServiceDesc is the grpc.ServiceDesc for ReviewService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -356,6 +390,10 @@ var ReviewService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListReviewByUserID",
 			Handler:    _ReviewService_ListReviewByUserID_Handler,
+		},
+		{
+			MethodName: "ListReviewByStoreID",
+			Handler:    _ReviewService_ListReviewByStoreID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
