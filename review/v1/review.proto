@@ -3,8 +3,19 @@ package review.v1;
 
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/BradleyZhang/ecommerce-review-service/api/gen/go/review/v1;v1";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Ecommerce Review Api"
+    version: "0.1"
+    contact: {
+      name: "ecommerce review"
+      url: "https://github.com/BradleyZhang/ecommerce-review-apis"
+    }
+  }
+};
 service ReviewService {
   // C端创建评价 CreateReview
   rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse) {

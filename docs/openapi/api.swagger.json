@@ -1,19 +1,23 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "business/v1/business.proto",
-    "version": "version not set"
+    "title": "Ecommerce Review Api",
+    "version": "0.1",
+    "contact": {
+      "name": "ecommerce review",
+      "url": "https://github.com/BradleyZhang/ecommerce-review-apis"
+    }
   },
   "tags": [
+    {
+      "name": "ReviewService"
+    },
     {
       "name": "BusinessService",
       "description": "商家端服务"
     },
     {
       "name": "OperationService"
-    },
-    {
-      "name": "ReviewService"
     }
   ],
   "consumes": [

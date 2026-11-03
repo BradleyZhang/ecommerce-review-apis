@@ -8,6 +8,7 @@ package v1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1090,7 +1091,7 @@ var File_review_v1_review_proto protoreflect.FileDescriptor
 
 const file_review_v1_review_proto_rawDesc = "" +
 	"\n" +
-	"\x16review/v1/review.proto\x12\treview.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\"\x90\x03\n" +
+	"\x16review/v1/review.proto\x12\treview.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x90\x03\n" +
 	"\x13CreateReviewRequest\x12 \n" +
 	"\auser_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x06userId\x12\"\n" +
 	"\border_id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\aorderId\x12%\n" +
@@ -1191,7 +1192,9 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\fAppealReview\x12\x1e.review.v1.AppealReviewRequest\x1a\x1f.review.v1.AppealReviewResponse\"\x00\x12N\n" +
 	"\vAuditAppeal\x12\x1d.review.v1.AuditAppealRequest\x1a\x1e.review.v1.AuditAppealResponse\"\x00\x12\x80\x01\n" +
 	"\x12ListReviewByUserID\x12$.review.v1.ListReviewByUserIDRequest\x1a%.review.v1.ListReviewByUserIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/{user_id}/reviews\x12d\n" +
-	"\x13ListReviewByStoreID\x12%.review.v1.ListReviewByStoreIDRequest\x1a&.review.v1.ListReviewByStoreIDResponseBJZHgithub.com/BradleyZhang/ecommerce-review-service/api/gen/go/review/v1;v1b\x06proto3"
+	"\x13ListReviewByStoreID\x12%.review.v1.ListReviewByStoreIDRequest\x1a&.review.v1.ListReviewByStoreIDResponseB\xb5\x01\x92Ah\x12f\n" +
+	"\x14Ecommerce Review Api\"I\n" +
+	"\x10ecommerce review\x125https://github.com/BradleyZhang/ecommerce-review-apis2\x030.1ZHgithub.com/BradleyZhang/ecommerce-review-service/api/gen/go/review/v1;v1b\x06proto3"
 
 var (
 	file_review_v1_review_proto_rawDescOnce sync.Once

@@ -31,7 +31,9 @@ message AuditReviewRequest {
   string op_reason = 4 [(buf.validate.field).string.min_len = 2];
   optional string op_remarks = 5;
 }
+
 message AuditReviewResponse {}
+
 message AuditAppealRequest {
   int64 appeal_id = 1 [(buf.validate.field).int64.gt = 0];
   int64 review_id = 2 [(buf.validate.field).int64.gt = 0];
@@ -40,4 +42,5 @@ message AuditAppealRequest {
   string op_reason = 5 [(buf.validate.field).string.min_len = 2];
   optional string op_remarks = 6;
 }
+
 message AuditAppealResponse {}
