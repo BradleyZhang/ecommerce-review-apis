@@ -219,7 +219,6 @@ func (x *AuditAppealRequest) GetOpRemarks() string {
 	return ""
 }
 
-// 对申诉进行审核的返回值
 type AuditAppealResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields

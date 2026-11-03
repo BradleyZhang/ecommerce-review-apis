@@ -319,7 +319,7 @@ func RegisterReviewServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/review.v1.ReviewService/AuditReview", runtime.WithHTTPPathPattern("/v1/review/audit"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/review.v1.ReviewService/AuditReview", runtime.WithHTTPPathPattern("/review.v1.ReviewService/AuditReview"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -339,7 +339,7 @@ func RegisterReviewServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/review.v1.ReviewService/ReplyReview", runtime.WithHTTPPathPattern("/v1/review/reply"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/review.v1.ReviewService/ReplyReview", runtime.WithHTTPPathPattern("/review.v1.ReviewService/ReplyReview"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -359,7 +359,7 @@ func RegisterReviewServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/review.v1.ReviewService/AppealReview", runtime.WithHTTPPathPattern("/v1/review/appeal"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/review.v1.ReviewService/AppealReview", runtime.WithHTTPPathPattern("/review.v1.ReviewService/AppealReview"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -379,7 +379,7 @@ func RegisterReviewServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/review.v1.ReviewService/AuditAppeal", runtime.WithHTTPPathPattern("/v1/appeal/audit"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/review.v1.ReviewService/AuditAppeal", runtime.WithHTTPPathPattern("/review.v1.ReviewService/AuditAppeal"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -511,7 +511,7 @@ func RegisterReviewServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/review.v1.ReviewService/AuditReview", runtime.WithHTTPPathPattern("/v1/review/audit"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/review.v1.ReviewService/AuditReview", runtime.WithHTTPPathPattern("/review.v1.ReviewService/AuditReview"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -528,7 +528,7 @@ func RegisterReviewServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/review.v1.ReviewService/ReplyReview", runtime.WithHTTPPathPattern("/v1/review/reply"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/review.v1.ReviewService/ReplyReview", runtime.WithHTTPPathPattern("/review.v1.ReviewService/ReplyReview"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -545,7 +545,7 @@ func RegisterReviewServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/review.v1.ReviewService/AppealReview", runtime.WithHTTPPathPattern("/v1/review/appeal"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/review.v1.ReviewService/AppealReview", runtime.WithHTTPPathPattern("/review.v1.ReviewService/AppealReview"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -562,7 +562,7 @@ func RegisterReviewServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/review.v1.ReviewService/AuditAppeal", runtime.WithHTTPPathPattern("/v1/appeal/audit"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/review.v1.ReviewService/AuditAppeal", runtime.WithHTTPPathPattern("/review.v1.ReviewService/AuditAppeal"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -615,10 +615,10 @@ func RegisterReviewServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 var (
 	pattern_ReviewService_CreateReview_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "review"}, ""))
 	pattern_ReviewService_GetReview_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "review", "review_id"}, ""))
-	pattern_ReviewService_AuditReview_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "review", "audit"}, ""))
-	pattern_ReviewService_ReplyReview_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "review", "reply"}, ""))
-	pattern_ReviewService_AppealReview_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "review", "appeal"}, ""))
-	pattern_ReviewService_AuditAppeal_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "appeal", "audit"}, ""))
+	pattern_ReviewService_AuditReview_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"review.v1.ReviewService", "AuditReview"}, ""))
+	pattern_ReviewService_ReplyReview_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"review.v1.ReviewService", "ReplyReview"}, ""))
+	pattern_ReviewService_AppealReview_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"review.v1.ReviewService", "AppealReview"}, ""))
+	pattern_ReviewService_AuditAppeal_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"review.v1.ReviewService", "AuditAppeal"}, ""))
 	pattern_ReviewService_ListReviewByUserID_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"v1", "user_id", "reviews"}, ""))
 	pattern_ReviewService_ListReviewByStoreID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"review.v1.ReviewService", "ListReviewByStoreID"}, ""))
 )

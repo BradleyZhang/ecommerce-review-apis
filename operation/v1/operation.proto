@@ -8,12 +8,14 @@ import "google/api/annotations.proto";
 option go_package = "github.com/BradleyZhang/ecommerce-review-o/api/gen/go/operation/v1;v1";
 
 service OperationService {
+  // 审核评论 AuditReview
   rpc AuditReview(AuditReviewRequest) returns (AuditReviewResponse) {
     option (google.api.http) = {
       post: "/o/v1/review/audit"
       body: "*"
     };
   }
+  // 审核申诉 AuditAppeal
   rpc AuditAppeal(AuditAppealRequest) returns (AuditAppealResponse) {
     option (google.api.http) = {
       post: "/o/v1/appeal/audit"
@@ -38,5 +40,4 @@ message AuditAppealRequest {
   string op_reason = 5 [(buf.validate.field).string.min_len = 2];
   optional string op_remarks = 6;
 }
-// 对申诉进行审核的返回值
 message AuditAppealResponse {}

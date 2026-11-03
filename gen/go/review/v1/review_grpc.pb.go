@@ -33,9 +33,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ReviewServiceClient interface {
-	// C端创建评价
+	// C端创建评价 CreateReview
 	CreateReview(ctx context.Context, in *CreateReviewRequest, opts ...grpc.CallOption) (*CreateReviewResponse, error)
-	// C端获取评价详情
+	// C端获取评价详情 GetReviewRequest
 	GetReview(ctx context.Context, in *GetReviewRequest, opts ...grpc.CallOption) (*GetReviewResponse, error)
 	// O端审核评价
 	AuditReview(ctx context.Context, in *AuditReviewRequest, opts ...grpc.CallOption) (*AuditReviewResponse, error)
@@ -45,7 +45,7 @@ type ReviewServiceClient interface {
 	AppealReview(ctx context.Context, in *AppealReviewRequest, opts ...grpc.CallOption) (*AppealReviewResponse, error)
 	// O端评价申诉审核
 	AuditAppeal(ctx context.Context, in *AuditAppealRequest, opts ...grpc.CallOption) (*AuditAppealResponse, error)
-	// C端查看userID下所有评价
+	// C端查看 userID 下评价 ListReviewByUserID
 	ListReviewByUserID(ctx context.Context, in *ListReviewByUserIDRequest, opts ...grpc.CallOption) (*ListReviewByUserIDResponse, error)
 	ListReviewByStoreID(ctx context.Context, in *ListReviewByStoreIDRequest, opts ...grpc.CallOption) (*ListReviewByStoreIDResponse, error)
 }
@@ -142,9 +142,9 @@ func (c *reviewServiceClient) ListReviewByStoreID(ctx context.Context, in *ListR
 // All implementations must embed UnimplementedReviewServiceServer
 // for forward compatibility.
 type ReviewServiceServer interface {
-	// C端创建评价
+	// C端创建评价 CreateReview
 	CreateReview(context.Context, *CreateReviewRequest) (*CreateReviewResponse, error)
-	// C端获取评价详情
+	// C端获取评价详情 GetReviewRequest
 	GetReview(context.Context, *GetReviewRequest) (*GetReviewResponse, error)
 	// O端审核评价
 	AuditReview(context.Context, *AuditReviewRequest) (*AuditReviewResponse, error)
@@ -154,7 +154,7 @@ type ReviewServiceServer interface {
 	AppealReview(context.Context, *AppealReviewRequest) (*AppealReviewResponse, error)
 	// O端评价申诉审核
 	AuditAppeal(context.Context, *AuditAppealRequest) (*AuditAppealResponse, error)
-	// C端查看userID下所有评价
+	// C端查看 userID 下评价 ListReviewByUserID
 	ListReviewByUserID(context.Context, *ListReviewByUserIDRequest) (*ListReviewByUserIDResponse, error)
 	ListReviewByStoreID(context.Context, *ListReviewByStoreIDRequest) (*ListReviewByStoreIDResponse, error)
 	mustEmbedUnimplementedReviewServiceServer()

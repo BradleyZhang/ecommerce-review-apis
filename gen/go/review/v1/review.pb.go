@@ -24,17 +24,20 @@ const (
 )
 
 type CreateReviewRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	OrderId       int64                  `protobuf:"varint,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	Score         int32                  `protobuf:"varint,3,opt,name=score,proto3" json:"score,omitempty"`
-	ServiceScore  int32                  `protobuf:"varint,4,opt,name=service_score,json=serviceScore,proto3" json:"service_score,omitempty"`
-	ExpressScore  int32                  `protobuf:"varint,5,opt,name=express_score,json=expressScore,proto3" json:"express_score,omitempty"` // 物流打分
-	Content       string                 `protobuf:"bytes,6,opt,name=content,proto3" json:"content,omitempty"`
-	PicInfo       string                 `protobuf:"bytes,7,opt,name=pic_info,json=picInfo,proto3" json:"pic_info,omitempty"`
-	VideoInfo     string                 `protobuf:"bytes,8,opt,name=video_info,json=videoInfo,proto3" json:"video_info,omitempty"`
-	StoreId       int64                  `protobuf:"varint,9,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
-	Anonymous     bool                   `protobuf:"varint,10,opt,name=anonymous,proto3" json:"anonymous,omitempty"` // 评价匿名
+	state   protoimpl.MessageState `protogen:"open.v1"`
+	UserId  int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	OrderId int64                  `protobuf:"varint,2,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	// 评分
+	Score int32 `protobuf:"varint,3,opt,name=score,proto3" json:"score,omitempty"`
+	// 商家服务评分
+	ServiceScore int32 `protobuf:"varint,4,opt,name=service_score,json=serviceScore,proto3" json:"service_score,omitempty"`
+	// 物流评分
+	ExpressScore  int32  `protobuf:"varint,5,opt,name=express_score,json=expressScore,proto3" json:"express_score,omitempty"`
+	Content       string `protobuf:"bytes,6,opt,name=content,proto3" json:"content,omitempty"`
+	PicInfo       string `protobuf:"bytes,7,opt,name=pic_info,json=picInfo,proto3" json:"pic_info,omitempty"`
+	VideoInfo     string `protobuf:"bytes,8,opt,name=video_info,json=videoInfo,proto3" json:"video_info,omitempty"`
+	StoreId       int64  `protobuf:"varint,9,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
+	Anonymous     bool   `protobuf:"varint,10,opt,name=anonymous,proto3" json:"anonymous,omitempty"` // 评价匿名
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -183,7 +186,6 @@ func (x *CreateReviewResponse) GetReviewId() int64 {
 	return 0
 }
 
-// 获取评价详情的请求参数
 type GetReviewRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReviewId      int64                  `protobuf:"varint,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
@@ -228,7 +230,6 @@ func (x *GetReviewRequest) GetReviewId() int64 {
 	return 0
 }
 
-// 获取评价详情的响应
 type GetReviewResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          *ReviewInfo            `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
@@ -273,7 +274,6 @@ func (x *GetReviewResponse) GetData() *ReviewInfo {
 	return nil
 }
 
-// 评价信息
 type ReviewInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReviewId      int64                  `protobuf:"varint,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
@@ -390,7 +390,6 @@ func (x *ReviewInfo) GetStatus() int32 {
 	return 0
 }
 
-// 审核评价的请求
 type AuditReviewRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReviewId      int64                  `protobuf:"varint,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
@@ -467,7 +466,6 @@ func (x *AuditReviewRequest) GetOpRemarks() string {
 	return ""
 }
 
-// 审核评价的返回值
 type AuditReviewResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReviewId      int64                  `protobuf:"varint,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
@@ -520,7 +518,6 @@ func (x *AuditReviewResponse) GetStatus() int32 {
 	return 0
 }
 
-// 回复评价的请求
 type ReplyReviewRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReviewId      int64                  `protobuf:"varint,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
@@ -597,7 +594,6 @@ func (x *ReplyReviewRequest) GetVideoInfo() string {
 	return ""
 }
 
-// 回复评价的返回值
 type ReplyReviewResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReplyId       int64                  `protobuf:"varint,1,opt,name=reply_id,json=replyId,proto3" json:"reply_id,omitempty"`
@@ -642,7 +638,6 @@ func (x *ReplyReviewResponse) GetReplyId() int64 {
 	return 0
 }
 
-// AppealReviewRequest 申诉评价的请求参数
 type AppealReviewRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReviewId      int64                  `protobuf:"varint,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
@@ -727,7 +722,6 @@ func (x *AppealReviewRequest) GetVideoInfo() string {
 	return ""
 }
 
-// 对评价进行申诉的返回值
 type AppealReviewResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AppealId      int64                  `protobuf:"varint,1,opt,name=appeal_id,json=appealId,proto3" json:"appeal_id,omitempty"`
@@ -772,7 +766,6 @@ func (x *AppealReviewResponse) GetAppealId() int64 {
 	return 0
 }
 
-// 对申诉进行审核的请求
 type AuditAppealRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AppealId      int64                  `protobuf:"varint,1,opt,name=appeal_id,json=appealId,proto3" json:"appeal_id,omitempty"`
@@ -849,7 +842,6 @@ func (x *AuditAppealRequest) GetOpRemarks() string {
 	return ""
 }
 
-// 对申诉进行审核的返回值
 type AuditAppealResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -886,7 +878,6 @@ func (*AuditAppealResponse) Descriptor() ([]byte, []int) {
 	return file_review_v1_review_proto_rawDescGZIP(), []int{12}
 }
 
-// 用户评价列表的请求
 type ListReviewByUserIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -947,7 +938,6 @@ func (x *ListReviewByUserIDRequest) GetLimit() int64 {
 	return 0
 }
 
-// 用户评价列表的返回值
 type ListReviewByUserIDResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	List          []*ReviewInfo          `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -1191,15 +1181,15 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\"H\n" +
 	"\x1bListReviewByStoreIDResponse\x12)\n" +
-	"\x04list\x18\x01 \x03(\v2\x15.review.v1.ReviewInfoR\x04list2\xf8\x06\n" +
+	"\x04list\x18\x01 \x03(\v2\x15.review.v1.ReviewInfoR\x04list2\x8b\x06\n" +
 	"\rReviewService\x12f\n" +
 	"\fCreateReview\x12\x1e.review.v1.CreateReviewRequest\x1a\x1f.review.v1.CreateReviewResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
 	"/v1/review\x12f\n" +
-	"\tGetReview\x12\x1b.review.v1.GetReviewRequest\x1a\x1c.review.v1.GetReviewResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/review/{review_id}\x12i\n" +
-	"\vAuditReview\x12\x1d.review.v1.AuditReviewRequest\x1a\x1e.review.v1.AuditReviewResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/review/audit\x12i\n" +
-	"\vReplyReview\x12\x1d.review.v1.ReplyReviewRequest\x1a\x1e.review.v1.ReplyReviewResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/review/reply\x12m\n" +
-	"\fAppealReview\x12\x1e.review.v1.AppealReviewRequest\x1a\x1f.review.v1.AppealReviewResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/review/appeal\x12i\n" +
-	"\vAuditAppeal\x12\x1d.review.v1.AuditAppealRequest\x1a\x1e.review.v1.AuditAppealResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/appeal/audit\x12\x80\x01\n" +
+	"\tGetReview\x12\x1b.review.v1.GetReviewRequest\x1a\x1c.review.v1.GetReviewResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/review/{review_id}\x12N\n" +
+	"\vAuditReview\x12\x1d.review.v1.AuditReviewRequest\x1a\x1e.review.v1.AuditReviewResponse\"\x00\x12N\n" +
+	"\vReplyReview\x12\x1d.review.v1.ReplyReviewRequest\x1a\x1e.review.v1.ReplyReviewResponse\"\x00\x12Q\n" +
+	"\fAppealReview\x12\x1e.review.v1.AppealReviewRequest\x1a\x1f.review.v1.AppealReviewResponse\"\x00\x12N\n" +
+	"\vAuditAppeal\x12\x1d.review.v1.AuditAppealRequest\x1a\x1e.review.v1.AuditAppealResponse\"\x00\x12\x80\x01\n" +
 	"\x12ListReviewByUserID\x12$.review.v1.ListReviewByUserIDRequest\x1a%.review.v1.ListReviewByUserIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/{user_id}/reviews\x12d\n" +
 	"\x13ListReviewByStoreID\x12%.review.v1.ListReviewByStoreIDRequest\x1a&.review.v1.ListReviewByStoreIDResponseBJZHgithub.com/BradleyZhang/ecommerce-review-service/api/gen/go/review/v1;v1b\x06proto3"
 

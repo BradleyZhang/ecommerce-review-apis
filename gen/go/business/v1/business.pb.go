@@ -99,7 +99,6 @@ func (x *ReplyReviewRequest) GetVideoInfo() string {
 	return ""
 }
 
-// 回复评价的返回值
 type ReplyReviewResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReplyId       int64                  `protobuf:"varint,1,opt,name=reply_id,json=replyId,proto3" json:"reply_id,omitempty"`
@@ -144,6 +143,134 @@ func (x *ReplyReviewResponse) GetReplyId() int64 {
 	return 0
 }
 
+type AppealReviewRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ReviewId      int64                  `protobuf:"varint,1,opt,name=review_id,json=reviewId,proto3" json:"review_id,omitempty"`
+	StoreId       int64                  `protobuf:"varint,2,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
+	Reason        string                 `protobuf:"bytes,3,opt,name=reason,proto3" json:"reason,omitempty"`
+	Content       string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
+	PicInfo       string                 `protobuf:"bytes,5,opt,name=pic_info,json=picInfo,proto3" json:"pic_info,omitempty"`
+	VideoInfo     string                 `protobuf:"bytes,6,opt,name=video_info,json=videoInfo,proto3" json:"video_info,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppealReviewRequest) Reset() {
+	*x = AppealReviewRequest{}
+	mi := &file_business_v1_business_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppealReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppealReviewRequest) ProtoMessage() {}
+
+func (x *AppealReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_business_v1_business_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppealReviewRequest.ProtoReflect.Descriptor instead.
+func (*AppealReviewRequest) Descriptor() ([]byte, []int) {
+	return file_business_v1_business_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AppealReviewRequest) GetReviewId() int64 {
+	if x != nil {
+		return x.ReviewId
+	}
+	return 0
+}
+
+func (x *AppealReviewRequest) GetStoreId() int64 {
+	if x != nil {
+		return x.StoreId
+	}
+	return 0
+}
+
+func (x *AppealReviewRequest) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
+func (x *AppealReviewRequest) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *AppealReviewRequest) GetPicInfo() string {
+	if x != nil {
+		return x.PicInfo
+	}
+	return ""
+}
+
+func (x *AppealReviewRequest) GetVideoInfo() string {
+	if x != nil {
+		return x.VideoInfo
+	}
+	return ""
+}
+
+type AppealReviewResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AppealId      int64                  `protobuf:"varint,1,opt,name=appeal_id,json=appealId,proto3" json:"appeal_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AppealReviewResponse) Reset() {
+	*x = AppealReviewResponse{}
+	mi := &file_business_v1_business_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AppealReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AppealReviewResponse) ProtoMessage() {}
+
+func (x *AppealReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_business_v1_business_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AppealReviewResponse.ProtoReflect.Descriptor instead.
+func (*AppealReviewResponse) Descriptor() ([]byte, []int) {
+	return file_business_v1_business_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AppealReviewResponse) GetAppealId() int64 {
+	if x != nil {
+		return x.AppealId
+	}
+	return 0
+}
+
 var File_business_v1_business_proto protoreflect.FileDescriptor
 
 const file_business_v1_business_proto_rawDesc = "" +
@@ -158,9 +285,22 @@ const file_business_v1_business_proto_rawDesc = "" +
 	"\n" +
 	"video_info\x18\x05 \x01(\tR\tvideoInfo\"0\n" +
 	"\x13ReplyReviewResponse\x12\x19\n" +
-	"\breply_id\x18\x01 \x01(\x03R\areplyId2\x82\x01\n" +
+	"\breply_id\x18\x01 \x01(\x03R\areplyId\"\xe3\x01\n" +
+	"\x13AppealReviewRequest\x12$\n" +
+	"\treview_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\breviewId\x12\"\n" +
+	"\bstore_id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\astoreId\x12\"\n" +
+	"\x06reason\x18\x03 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x02\x18\xc8\x01R\x06reason\x12$\n" +
+	"\acontent\x18\x04 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x02\x18\xc8\x01R\acontent\x12\x19\n" +
+	"\bpic_info\x18\x05 \x01(\tR\apicInfo\x12\x1d\n" +
+	"\n" +
+	"video_info\x18\x06 \x01(\tR\tvideoInfo\"3\n" +
+	"\x14AppealReviewResponse\x12\x1b\n" +
+	"\tappeal_id\x18\x01 \x01(\x03R\bappealId2\xf7\x01\n" +
 	"\x0fBusinessService\x12o\n" +
-	"\vReplyReview\x12\x1f.business.v1.ReplyReviewRequest\x1a .business.v1.ReplyReviewResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/b/v1/review/replyBFZDgithub.com/BradleyZhang/ecommerce-review-b/api/gen/go/business/v1;v1b\x06proto3"
+	"\vReplyReview\x12\x1f.business.v1.ReplyReviewRequest\x1a .business.v1.ReplyReviewResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/b/v1/review/reply\x12s\n" +
+	"\fAppealReview\x12 .business.v1.AppealReviewRequest\x1a!.business.v1.AppealReviewResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/b/v1/review/appealBFZDgithub.com/BradleyZhang/ecommerce-review-b/api/gen/go/business/v1;v1b\x06proto3"
 
 var (
 	file_business_v1_business_proto_rawDescOnce sync.Once
@@ -174,16 +314,20 @@ func file_business_v1_business_proto_rawDescGZIP() []byte {
 	return file_business_v1_business_proto_rawDescData
 }
 
-var file_business_v1_business_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_business_v1_business_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_business_v1_business_proto_goTypes = []any{
-	(*ReplyReviewRequest)(nil),  // 0: business.v1.ReplyReviewRequest
-	(*ReplyReviewResponse)(nil), // 1: business.v1.ReplyReviewResponse
+	(*ReplyReviewRequest)(nil),   // 0: business.v1.ReplyReviewRequest
+	(*ReplyReviewResponse)(nil),  // 1: business.v1.ReplyReviewResponse
+	(*AppealReviewRequest)(nil),  // 2: business.v1.AppealReviewRequest
+	(*AppealReviewResponse)(nil), // 3: business.v1.AppealReviewResponse
 }
 var file_business_v1_business_proto_depIdxs = []int32{
 	0, // 0: business.v1.BusinessService.ReplyReview:input_type -> business.v1.ReplyReviewRequest
-	1, // 1: business.v1.BusinessService.ReplyReview:output_type -> business.v1.ReplyReviewResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: business.v1.BusinessService.AppealReview:input_type -> business.v1.AppealReviewRequest
+	1, // 2: business.v1.BusinessService.ReplyReview:output_type -> business.v1.ReplyReviewResponse
+	3, // 3: business.v1.BusinessService.AppealReview:output_type -> business.v1.AppealReviewResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -200,7 +344,7 @@ func file_business_v1_business_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_business_v1_business_proto_rawDesc), len(file_business_v1_business_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

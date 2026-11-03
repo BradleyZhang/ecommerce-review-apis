@@ -1,0 +1,94 @@
+name: Deploy Swagger UI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/openapi/**'
+      - '.github/workflows/deploy-swagger.yml'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # Checkout repository
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      # Prepare GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Build Swagger UI
+      - name: Build Swagger UI
+        run: |
+          mkdir -p _site
+
+          # Copy OpenAPI specification
+          cp docs/openapi/api.swagger.json _site/api.swagger.json
+
+          # Generate Swagger UI page
+          cat > _site/index.html <<'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Ecommerce Review API</title>
+
+            <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css">
+          </head>
+          <body>
+            <div id="swagger-ui"></div>
+
+            <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui-bundle.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui-standalone-preset.js"></script>
+
+            <script>
+              window.onload = function () {
+                SwaggerUIBundle({
+                  url: "./api.swagger.json",
+                  dom_id: "#swagger-ui",
+                  deepLinking: true,
+                  presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                  ],
+                  layout: "StandaloneLayout"
+                });
+              };
+            </script>
+          </body>
+          </html>
+          EOF
+
+          touch _site/.nojekyll
+
+      # Upload GitHub Pages artifact
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./_site
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

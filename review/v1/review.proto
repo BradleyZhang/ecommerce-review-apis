@@ -6,46 +6,46 @@ import "google/api/annotations.proto";
 
 option go_package = "github.com/BradleyZhang/ecommerce-review-service/api/gen/go/review/v1;v1";
 service ReviewService {
-  // C端创建评价
+  // C端创建评价 CreateReview
   rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse) {
     option (google.api.http) = {
       post: "/v1/review"
       body: "*"
     };
   }
-  // C端获取评价详情
+  // C端获取评价详情 GetReviewRequest
   rpc GetReview(GetReviewRequest) returns (GetReviewResponse) {
     option (google.api.http) = {get: "/v1/review/{review_id}"};
   }
   // O端审核评价
   rpc AuditReview(AuditReviewRequest) returns (AuditReviewResponse) {
-    option (google.api.http) = {
-      post: "/v1/review/audit"
-      body: "*"
-    };
+    // option (google.api.http) = {
+    //   post: "/v1/review/audit"
+    //   body: "*"
+    // };
   }
   // B端回复评价
   rpc ReplyReview(ReplyReviewRequest) returns (ReplyReviewResponse) {
-    option (google.api.http) = {
-      post: "/v1/review/reply"
-      body: "*"
-    };
+    // option (google.api.http) = {
+    //   post: "/v1/review/reply"
+    //   body: "*"
+    // };
   }
   // B端申诉评价
   rpc AppealReview(AppealReviewRequest) returns (AppealReviewResponse) {
-    option (google.api.http) = {
-      post: "/v1/review/appeal"
-      body: "*"
-    };
+    // option (google.api.http) = {
+    //   post: "/v1/review/appeal"
+    //   body: "*"
+    // };
   }
   // O端评价申诉审核
   rpc AuditAppeal(AuditAppealRequest) returns (AuditAppealResponse) {
-    option (google.api.http) = {
-      post: "/v1/appeal/audit"
-      body: "*"
-    };
+    // option (google.api.http) = {
+    //   post: "/v1/appeal/audit"
+    //   body: "*"
+    // };
   }
-  // C端查看userID下所有评价
+  // C端查看 userID 下评价 ListReviewByUserID
   rpc ListReviewByUserID(ListReviewByUserIDRequest) returns (ListReviewByUserIDResponse) {
     option (google.api.http) = {get: "/v1/{user_id}/reviews"};
   }
@@ -56,6 +56,7 @@ service ReviewService {
 message CreateReviewRequest {
   int64 user_id = 1 [(buf.validate.field).int64.gt = 0];
   int64 order_id = 2 [(buf.validate.field).int64.gt = 0];
+  // 评分
   int32 score = 3 [(buf.validate.field).int32 = {
     in: [
       1,
@@ -65,6 +66,7 @@ message CreateReviewRequest {
       5
     ]
   }];
+  // 商家服务评分
   int32 service_score = 4 [(buf.validate.field).int32 = {
     in: [
       1,
@@ -74,6 +76,7 @@ message CreateReviewRequest {
       5
     ]
   }];
+  // 物流评分
   int32 express_score = 5 [(buf.validate.field).int32 = {
     in: [
       1,
@@ -82,7 +85,7 @@ message CreateReviewRequest {
       4,
       5
     ]
-  }]; // 物流打分
+  }];
   string content = 6 [
     (buf.validate.field).string.min_len = 8,
     (buf.validate.field).string.max_len = 255
@@ -97,17 +100,14 @@ message CreateReviewResponse {
   int64 review_id = 1;
 }
 
-// 获取评价详情的请求参数
 message GetReviewRequest {
   int64 review_id = 1 [(buf.validate.field).int64.gt = 0];
 }
 
-// 获取评价详情的响应
 message GetReviewResponse {
   ReviewInfo data = 1;
 }
 
-// 评价信息
 message ReviewInfo {
   int64 review_id = 1;
   int64 user_id = 2;
@@ -121,7 +121,6 @@ message ReviewInfo {
   int32 status = 10;
 }
 
-// 审核评价的请求
 message AuditReviewRequest {
   int64 review_id = 1 [(buf.validate.field).int64.gt = 0];
   int32 status = 2 [(buf.validate.field).int32.gt = 0];
@@ -130,13 +129,11 @@ message AuditReviewRequest {
   optional string op_remarks = 5;
 }
 
-// 审核评价的返回值
 message AuditReviewResponse {
   int64 review_id = 1;
   int32 status = 2;
 }
 
-// 回复评价的请求
 message ReplyReviewRequest {
   int64 review_id = 1 [(buf.validate.field).int64.gte = 0];
   int64 store_id = 2 [(buf.validate.field).int64.gt = 0];
@@ -148,12 +145,10 @@ message ReplyReviewRequest {
   string video_info = 5;
 }
 
-// 回复评价的返回值
 message ReplyReviewResponse {
   int64 reply_id = 1;
 }
 
-// AppealReviewRequest 申诉评价的请求参数
 message AppealReviewRequest {
   int64 review_id = 1 [(buf.validate.field).int64.gt = 0];
   int64 store_id = 2 [(buf.validate.field).int64.gt = 0];
@@ -169,12 +164,10 @@ message AppealReviewRequest {
   string video_info = 6;
 }
 
-// 对评价进行申诉的返回值
 message AppealReviewResponse {
   int64 appeal_id = 1;
 }
 
-// 对申诉进行审核的请求
 message AuditAppealRequest {
   int64 appeal_id = 1 [(buf.validate.field).int64.gt = 0];
   int64 review_id = 2 [(buf.validate.field).int64.gt = 0];
@@ -183,17 +176,14 @@ message AuditAppealRequest {
   optional string op_remarks = 5;
 }
 
-// 对申诉进行审核的返回值
 message AuditAppealResponse {}
 
-// 用户评价列表的请求
 message ListReviewByUserIDRequest {
   int64 user_id = 1 [(buf.validate.field).int64.gt = 0];
   int64 offset = 2;
   int64 limit = 3;
 }
 
-// 用户评价列表的返回值
 message ListReviewByUserIDResponse {
   repeated ReviewInfo list = 1;
 }

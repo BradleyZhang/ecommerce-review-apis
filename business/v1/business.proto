@@ -9,10 +9,18 @@ option go_package = "github.com/BradleyZhang/ecommerce-review-b/api/gen/go/busin
 
 // 商家端服务
 service BusinessService {
-  // 商家回复用户评价
+  // 商家回复用户评价 ReplyReview
   rpc ReplyReview(ReplyReviewRequest) returns (ReplyReviewResponse) {
     option (google.api.http) = {
       post: "/b/v1/review/reply"
+      body: "*"
+    };
+  }
+
+  // 商家申诉用户评价 AppealReview
+  rpc AppealReview(AppealReviewRequest) returns (AppealReviewResponse) {
+    option (google.api.http) = {
+      post: "/b/v1/review/appeal"
       body: "*"
     };
   }
@@ -29,7 +37,25 @@ message ReplyReviewRequest {
   string video_info = 5;
 }
 
-// 回复评价的返回值
 message ReplyReviewResponse {
   int64 reply_id = 1;
+}
+
+message AppealReviewRequest {
+  int64 review_id = 1 [(buf.validate.field).int64.gt = 0];
+  int64 store_id = 2 [(buf.validate.field).int64.gt = 0];
+  string reason = 3 [
+    (buf.validate.field).string.min_len = 2,
+    (buf.validate.field).string.max_len = 200
+  ];
+  string content = 4 [
+    (buf.validate.field).string.min_len = 2,
+    (buf.validate.field).string.max_len = 200
+  ];
+  string pic_info = 5;
+  string video_info = 6;
+}
+
+message AppealReviewResponse {
+  int64 appeal_id = 1;
 }

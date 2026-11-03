@@ -27,7 +27,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OperationServiceClient interface {
+	// 审核评论 AuditReview
 	AuditReview(ctx context.Context, in *AuditReviewRequest, opts ...grpc.CallOption) (*AuditReviewResponse, error)
+	// 审核申诉 AuditAppeal
 	AuditAppeal(ctx context.Context, in *AuditAppealRequest, opts ...grpc.CallOption) (*AuditAppealResponse, error)
 }
 
@@ -63,7 +65,9 @@ func (c *operationServiceClient) AuditAppeal(ctx context.Context, in *AuditAppea
 // All implementations must embed UnimplementedOperationServiceServer
 // for forward compatibility.
 type OperationServiceServer interface {
+	// 审核评论 AuditReview
 	AuditReview(context.Context, *AuditReviewRequest) (*AuditReviewResponse, error)
+	// 审核申诉 AuditAppeal
 	AuditAppeal(context.Context, *AuditAppealRequest) (*AuditAppealResponse, error)
 	mustEmbedUnimplementedOperationServiceServer()
 }
